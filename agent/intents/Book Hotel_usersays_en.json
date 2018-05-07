@@ -1,0 +1,68 @@
+[
+  {
+    "id": "4308b4f0-ec81-40bd-885f-f74a83329c39",
+    "data": [
+      {
+        "text": "in ",
+        "userDefined": false
+      },
+      {
+        "text": "karachi",
+        "alias": "geoCity",
+        "meta": "@sys.geo-city",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525711974
+  },
+  {
+    "id": "d1088670-e2db-429b-a887-4cb106158eda",
+    "data": [
+      {
+        "text": "for ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "alias": "numberOfPeople",
+        "meta": "@sys.number-integer",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525711974
+  },
+  {
+    "id": "3041f1a5-e1a3-4838-b7fb-883cef8acd6b",
+    "data": [
+      {
+        "text": "we are ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "alias": "numberOfPeople",
+        "meta": "@sys.number-integer",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525711974
+  },
+  {
+    "id": "d87ac063-4932-48ce-894d-8d4bf8b5d5ef",
+    "data": [
+      {
+        "text": "book hotel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1525711974
+  }
+]

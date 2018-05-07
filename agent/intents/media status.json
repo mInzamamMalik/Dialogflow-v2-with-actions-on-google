@@ -1,0 +1,33 @@
+{
+  "id": "c492cac7-ab6a-4207-8fcf-5bbbc6dca49b",
+  "name": "media status",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "media.status",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Webhook failed"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1520293235,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "actions_intent_MEDIA_STATUS"
+    }
+  ]
+}

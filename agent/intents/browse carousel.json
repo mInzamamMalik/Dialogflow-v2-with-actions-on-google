@@ -1,0 +1,29 @@
+{
+  "id": "b3955ceb-cbfb-41a2-85b8-94f1598318e4",
+  "name": "browse carousel",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "browse.carousel",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "The webhook failed"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1520537791,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "f5ddc90b-d5da-4bec-9e5c-a19089308bad",
+  "name": "suggestions",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "suggestions",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "suggestions"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1521062969,
+  "fallbackIntent": false,
+  "events": []
+}

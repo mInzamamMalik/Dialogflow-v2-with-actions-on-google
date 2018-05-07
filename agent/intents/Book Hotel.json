@@ -1,0 +1,45 @@
+{
+  "id": "7340e176-2e58-4913-aa41-bcd7f09facf6",
+  "name": "Book Hotel",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "56b0dfea-3a4c-4432-b276-cb58a799f19f",
+          "required": true,
+          "dataType": "@sys.number-integer",
+          "name": "numberOfPeople",
+          "value": "$numberOfPeople",
+          "isList": false
+        },
+        {
+          "id": "063f7eb0-114f-476b-8d54-a4c6f674ca67",
+          "required": true,
+          "dataType": "@sys.geo-city",
+          "name": "geoCity",
+          "value": "$geoCity",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "wrong"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": true,
+  "lastUpdate": 1525711974,
+  "fallbackIntent": false,
+  "events": []
+}

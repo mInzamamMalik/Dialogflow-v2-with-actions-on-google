@@ -1,0 +1,35 @@
+{
+  "id": "16fdf55a-d1d6-48a8-8909-8b9e1f023fac",
+  "name": "list",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "list",
+      "affectedContexts": [
+        {
+          "name": "list_selection",
+          "parameters": {},
+          "lifespan": 1
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "webhook failed"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1521062962,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,62 @@
+{
+  "id": "a2c39db4-2ba0-4ec9-94f6-a94e8f9aff6d",
+  "name": "card builder",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "card.builder",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "lang": "en",
+          "suggestions": [
+            {
+              "title": "List Card"
+            },
+            {
+              "title": "Basic Card"
+            },
+            {
+              "title": "Carousel"
+            },
+            {
+              "title": "List"
+            }
+          ]
+        },
+        {
+          "type": "link_out_chip",
+          "platform": "google",
+          "lang": "en",
+          "destinationName": "Developer Site",
+          "url": "https://developers.google.com/actions/"
+        },
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Sorry, try this on a screen device or select the phone surface in the simulator"
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "slack": true,
+        "facebook": true,
+        "telegram": true,
+        "google": true,
+        "viber": true,
+        "kik": true
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1521063540,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "2c0204f9-fb1d-4383-91e4-d08d71580556",
+    "data": [
+      {
+        "text": "carousel card",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b86b6999-6b11-4252-9273-d04464eb5b91",
+    "data": [
+      {
+        "text": "carousel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]
