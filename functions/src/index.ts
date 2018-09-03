@@ -1,17 +1,8 @@
 import * as functions from 'firebase-functions';
 import { dialogflow, SimpleResponse, Suggestions, DialogflowConversation, DialogflowApp } from 'actions-on-google'
+import { raw } from './core'
 
-
-const intentSuggestions = [
-    'Basic Card',
-    'Browse Carousel',
-    'Carousel',
-    'List',
-    'Media',
-    'Suggestions',
-];
-
-const app = dialogflow({ debug: true })
+const app = dialogflow({ debug: false })
 
 
 app.middleware((conv) => {
@@ -24,16 +15,13 @@ app.middleware((conv) => {
 // Welcome
 app.intent('Default Welcome Intent', (conv) => {
     conv.ask(new SimpleResponse({
-        speech: `Hi there!, conv.hasScreen ${conv["hasScreen"]} conv.hasAudioPlayback ${conv["hasAudioPlayback"]}`,
-        text: 'Hello there!',
+        speech: `Hi & welcome to TITITY™! The place for personalized gifts for any occasion!`,
+        text: 'Hi & welcome to TITITY™! The place for personalized gifts for any occasion!',
     }));
-    conv.ask(new SimpleResponse({
-        speech: 'I can show you basic cards, lists and carousels ' +
-            'as well as suggestions on your phone.',
-        text: 'I can show you basic cards, lists and carousels as ' +
-            'well as suggestions.',
-    }));
-    conv.ask(new Suggestions(intentSuggestions));
+    conv.ask(new Suggestions([
+        "gift a personalized song",
+        "gift anything else"
+    ]));
 });
 
 
@@ -61,5 +49,15 @@ app.intent('Default Fallback Intent', (conv) => {
 // https://firebase.google.com/docs/functions/typescript
 
 
-exports.webhook = functions.https.onRequest(app);
+export const webhook = functions.https.onRequest((request, response) => {
 
+    raw.request = request; // saving original request
+    raw.response = response; // saving original response
+
+    console.log("request.body: ", request.body)
+    console.log("response: ", response)
+
+    app(request, response) // handing over request to dialogflow app
+});
+
+// 
