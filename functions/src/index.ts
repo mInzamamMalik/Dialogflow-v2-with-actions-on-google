@@ -68,7 +68,7 @@ app.intent('Book Hotel', async (conv, params: any) => {
                         }
                     ]
                 },
-                headers: { "Authorization": 'Bearer ya29.c.ElsOBglfhVhHcQnI0-zJjyNVs8n3fwcMndVe8KjkJimWzuV-EhsPqChRo6ibSUBr2opHhoGdL160zzJR4FFZbINDZNdEATlwpDUveNieP0_ZgNWe7zwUB54LvXU7' }
+                headers: { "Authorization": `Bearer ${tokenData.access_token}`}
 
             })
             console.log("entitySuccess: ", entitySuccess)
