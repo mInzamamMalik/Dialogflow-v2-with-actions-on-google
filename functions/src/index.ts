@@ -1,5 +1,8 @@
 import * as functions from 'firebase-functions';
 import { dialogflow, SimpleResponse, Suggestions, DialogflowConversation, DialogflowApp } from 'actions-on-google'
+const { google } = require('googleapis');
+
+
 import { raw } from './core'
 import { userEntity } from "./helperfunctions"
 
@@ -7,6 +10,17 @@ const app = dialogflow({ debug: false })
 
 
 app.middleware((conv) => {
+
+    const serviceAccountAuth = new google.auth.JWT({
+        email: "dialogflow-opimvo@upworkbot-65288.iam.gserviceaccount.com",
+        key: "7e4e61c52f71cf60f49035030d44ad3a577ae7b9",
+        scopes: 'https://www.googleapis.com/auth/cloud-platform'
+    })
+
+    console.log("serviceAccountAuth: ", serviceAccountAuth)
+
+
+
     conv["hasScreen"] =
         conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT');
     conv["hasAudioPlayback"] =
@@ -26,7 +40,7 @@ app.intent('Default Welcome Intent', (conv) => {
 });
 
 
-app.intent('Book Hotel', (conv, params:any) => {
+app.intent('Book Hotel', (conv, params: any) => {
 
     console.log("params.name: ", params.name)
     console.log("params.recipientsname: ", params.recipientsname)
