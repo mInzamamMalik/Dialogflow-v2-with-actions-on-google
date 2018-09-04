@@ -1,25 +1,14 @@
 import * as functions from 'firebase-functions';
 import { dialogflow, SimpleResponse, Suggestions, DialogflowConversation, DialogflowApp } from 'actions-on-google'
-const { google } = require('googleapis');
-
+import { http } from 'request-inzi';
 
 import { raw } from './core'
-import { userEntity } from "./helperfunctions"
+import { getToken } from './helperfunctions/OAuth'
 
 const app = dialogflow({ debug: false })
 
 
 app.middleware((conv) => {
-
-    const serviceAccountAuth = new google.auth.JWT({
-        email: "dialogflow-opimvo@upworkbot-65288.iam.gserviceaccount.com",
-        key: "7e4e61c52f71cf60f49035030d44ad3a577ae7b9",
-        scopes: 'https://www.googleapis.com/auth/cloud-platform'
-    })
-
-    console.log("serviceAccountAuth: ", serviceAccountAuth)
-
-
 
     conv["hasScreen"] =
         conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT');
@@ -40,7 +29,7 @@ app.intent('Default Welcome Intent', (conv) => {
 });
 
 
-app.intent('Book Hotel', (conv, params: any) => {
+app.intent('Book Hotel', async (conv, params: any) => {
 
     console.log("params.name: ", params.name)
     console.log("params.recipientsname: ", params.recipientsname)
@@ -49,21 +38,52 @@ app.intent('Book Hotel', (conv, params: any) => {
     console.log("params: ", params)
 
     if (!params.name) {
-        conv.ask("what is your name?")
+        return conv.ask("what is your name?")
     } else if (!params.recipientsname) {
-        conv.ask("what is your partner name?")
+        return conv.ask("what is your partner name?")
     } else if (params.characteristics.length == 0) {
 
-        userEntity.makeUserEntityWithArray(raw.request.body.session, "characteristics", ["bold", "clever"]).then(() => {
-            conv.ask("what is your partner characteristics?")
-        }).catch((e) => {
-            console.log("error making user entity")
-        })
+        try {
+
+            const tokenData = await getToken()
+
+            console.log("tokenData: ", tokenData)
+            const token = `${tokenData.token_type} ${tokenData.access_token}`
+            console.log("token: ", token)
+
+            const entitySuccess = await http.post(
+                `https://dialogflow.googleapis.com/v2/${raw.request.body.session}/entityTypes/`,
+                {
+                    "name": `${raw.request.body.session}/entityTypes/characteristics`,
+                    "entityOverrideMode": "ENTITY_OVERRIDE_MODE_OVERRIDE",
+                    "entities": [
+                        {
+                            "value": "some string",
+                            "synonyms": ["some string", "clever"]
+                        },
+                        {
+                            "value": "string",
+                            "synonyms": [" string", "bold"]
+                        }
+                    ]
+                },
+                { "Authorization": token }
+            )
+            console.log("entitySuccess: ", entitySuccess)
+
+            return conv.ask("what is the habits of your partner")
+        } catch (e) {
+            console.log("an error: ", e)
+            return conv.ask("an error")
+        }
 
     } else {
-        conv.close(`your hotel is booked for ${params.numberOfPeople} person in ${params.geoCity} city`)
+        return conv.close(`your hotel is booked for ${params.numberOfPeople} person in ${params.geoCity} city`)
     }
 });
+
+
+
 app.intent('Default Fallback Intent', (conv) => {
     conv.ask('Default fallback intent triggered');
 
