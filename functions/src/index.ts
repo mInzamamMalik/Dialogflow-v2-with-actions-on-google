@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import { dialogflow, SimpleResponse, Suggestions, DialogflowConversation, DialogflowApp } from 'actions-on-google'
 import { http } from 'request-inzi';
+import * as req from 'request';
 
 import { raw } from './core'
 import { getToken } from './helperfunctions/OAuth'
@@ -51,15 +52,15 @@ app.intent('Book Hotel', async (conv, params: any) => {
             const token = `${tokenData.token_type} ${tokenData.access_token}`
             console.log("token: ", token)
 
-            const entitySuccess = await http.post(
-                `https://dialogflow.googleapis.com/v2/${raw.request.body.session}/entityTypes/`,
-                {
+            const entitySuccess = await req.post({
+                url: `https://dialogflow.googleapis.com/v2/${raw.request.body.session}/entityTypes/`,
+                json: {
                     "name": `${raw.request.body.session}/entityTypes/characteristics`,
                     "entityOverrideMode": "ENTITY_OVERRIDE_MODE_OVERRIDE",
                     "entities": [
                         {
-                            "value": "some string",
-                            "synonyms": ["some string", "clever"]
+                            "value": "some-string",
+                            "synonyms": ["some", "clever"]
                         },
                         {
                             "value": "string",
@@ -67,11 +68,12 @@ app.intent('Book Hotel', async (conv, params: any) => {
                         }
                     ]
                 },
-                { "Authorization": token }
-            )
-            console.log("entitySuccess: ", entitySuccess)
+                headers: { "Authorization": 'Bearer ya29.c.ElsOBglfhVhHcQnI0-zJjyNVs8n3fwcMndVe8KjkJimWzuV-EhsPqChRo6ibSUBr2opHhoGdL160zzJR4FFZbINDZNdEATlwpDUveNieP0_ZgNWe7zwUB54LvXU7' }
 
+            })
+            console.log("entitySuccess: ", entitySuccess)
             return conv.ask("what is the habits of your partner")
+
         } catch (e) {
             console.log("an error: ", e)
             return conv.ask("an error")
